@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 import { spawnSync } from "node:child_process";
-import { dirname, resolve } from "node:path";
+import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const scriptDirectory = dirname(fileURLToPath(import.meta.url));
-const defaultGit = resolve(scriptDirectory, "../../../scripts/git-services");
+const defaultGit = "/usr/bin/git";
 
-export function observeGitRepository({ repository = process.cwd(), gitBin = process.env.GIT_SERVICES_BIN ?? defaultGit } = {}) {
+export function observeGitRepository({ repository = process.cwd(), gitBin = defaultGit } = {}) {
   const cwd = resolve(repository);
   const root = runGit(gitBin, cwd, ["rev-parse", "--show-toplevel"]).stdout.trim();
   const branchResult = runGit(gitBin, cwd, ["symbolic-ref", "--quiet", "--short", "HEAD"], { allowFailure: true });
