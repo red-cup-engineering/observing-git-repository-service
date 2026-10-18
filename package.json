@@ -4,6 +4,11 @@
   "private": true,
   "type": "module",
   "description": "Reports a Git repository's root, branch, HEAD, and working-tree status.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/red-cup-engineering/git-services-section.git",
+    "directory": "services/observing-git-repository-service"
+  },
   "bin": {
     "observe-git-repository": "./scripts/observe-git-repository.mjs"
   },
